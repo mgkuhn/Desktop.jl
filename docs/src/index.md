@@ -3,6 +3,9 @@
 ```@index
 ```
 
-```@autodocs
-Modules = [Desktop]
+```@docs
+Desktop
+hasdesktop
+browse_url
+open_file
 ```
