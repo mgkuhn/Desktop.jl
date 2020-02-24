@@ -1,7 +1,7 @@
 name = "Desktop"
 uuid = "b29a95c0-35db-4866-a636-e016a4ee858a"
 authors = ["Markus Kuhn"]
-version = "0.1.0"
+version = "0.1.1"
 
 [compat]
 julia = "1.0"
