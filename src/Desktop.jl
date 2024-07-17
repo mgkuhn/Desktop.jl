@@ -27,13 +27,14 @@ const UOI_NAME = 2
 
 # auxiliary function for the Windows part of hasdesktop()
 """
-    windows_station_name()
+    window_station_name()
 
-    Query the name of the “windows station” in which the current
-    Win32 process is running. If this is `WinSta0`, the process
-    has access to a GUI desktop.
+    Query the name of the “[window station](https://docs.microsoft.com/en-us/windows/win32/winstation/window-stations)”
+    in which the current Win32 process is running. If this
+    function returns `"WinSta0"`, the process calling it has
+    access to a GUI desktop.
 """
-function windows_station_name()
+function window_station_name()
     hwinsta = ccall((:GetProcessWindowStation, "user32.dll"),
                     stdcall, HWINSTA, ())
     Base.windowserror("GetProcessWindowStation", hwinsta == C_NULL)
@@ -57,7 +58,7 @@ invoking GUI functions or applications.
 The algorithm used is a platform-dependent heuristic:
 
 - On Microsoft Windows: tests if the current process is running in a
-  “windows station” called `WinSta0`
+  “window station” called `WinSta0`
 
 - On macOS: checks the has-graphic-access bit in the security session
   information of the calling process
@@ -70,7 +71,7 @@ e.g. an available X11 server will be ignored on Windows or macOS.
 """
 function hasdesktop()
     if Sys.iswindows()
-        return windows_station_name() == "WinSta0"
+        return window_station_name() == "WinSta0"
     elseif Sys.isapple()
         # https://developer.apple.com/documentation/security/1593382-sessiongetinfo
         callerSecuritySession = 0xffffffff
