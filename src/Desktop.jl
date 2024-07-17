@@ -29,10 +29,10 @@ const UOI_NAME = 2
 """
     window_station_name()
 
-    Query the name of the “[window station](https://docs.microsoft.com/en-us/windows/win32/winstation/window-stations)”
-    in which the current Win32 process is running. If this
-    function returns `"WinSta0"`, the process calling it has
-    access to a GUI desktop.
+Query the name of the “[window station](https://docs.microsoft.com/en-us/windows/win32/winstation/window-stations)”
+in which the current Win32 process is running. If this
+function returns `"WinSta0"`, the process calling it has
+access to a GUI desktop.
 """
 function window_station_name()
     hwinsta = ccall((:GetProcessWindowStation, "user32.dll"),
@@ -80,11 +80,11 @@ function hasdesktop()
         attrs = Ref{Cuint}(0)
         r = ccall(:SessionGetInfo,
                   Cint, (Cuint, Ref{Cuint}, Ref{Cuint}),
-	          callerSecuritySession, C_NULL, attrs)
+                  callerSecuritySession, C_NULL, attrs)
         if r == errSessionSuccess
-	  return (attrs[] & sessionHasGraphicAccess) != 0
+            return (attrs[] & sessionHasGraphicAccess) != 0
         else
-	  @error r
+            @error r
         end
     else
         return (!isempty(get(ENV, "DISPLAY", "")) ||
@@ -109,10 +109,10 @@ function browse_url(url::AbstractString)
         # https://github.com/LOLBAS-Project/LOLBAS/blob/master/Archive-Old-Version/OSLibraries/Url.dll.md
         return success(`rundll32.exe url.dll,OpenURL $url`)
     elseif Sys.isapple()
-    	# currently requests Safari explicitly, as e.g. Google Chrome
-	# (if that's the default browser) fails to open the
-	# Julia documentation index.html due to that file
-	# commonly being installed with xattr com.apple.quarantine
+        # currently requests Safari explicitly, as e.g. Google Chrome
+        # (if that's the default browser) fails to open the
+        # Julia documentation index.html due to that file
+        # commonly being installed with xattr com.apple.quarantine
         # https://github.com/JuliaLang/julia/issues/34275
         return success(`/usr/bin/open -a safari $url`)
     else
