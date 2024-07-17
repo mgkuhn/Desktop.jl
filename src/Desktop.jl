@@ -77,9 +77,8 @@ function hasdesktop()
         sessionHasGraphicAccess = 16
         errSessionSuccess = 0
         attrs = Ref{Cuint}(0)
-    	r = ccall((:SessionGetInfo,
-	           "/System/Library/Frameworks/Security.framework/Versions/A/Security"),
-	          stdcall, Cint, (Cuint, Ref{Cuint}, Ref{Cuint}),
+        r = ccall(:SessionGetInfo,
+                  Cint, (Cuint, Ref{Cuint}, Ref{Cuint}),
 	          callerSecuritySession, C_NULL, attrs)
         if r == errSessionSuccess
 	  return (attrs[] & sessionHasGraphicAccess) != 0
