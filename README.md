@@ -2,7 +2,7 @@
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://mgkuhn.github.io/Desktop.jl/stable)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://mgkuhn.github.io/Desktop.jl/dev)
-[![Build Status](https://travis-ci.com/mgkuhn/Desktop.jl.svg?branch=master)](https://travis-ci.com/mgkuhn/Desktop.jl)
+[![Build Status](https://github.com/mgkuhn/Desktop.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/mgkuhn/Desktop.jl/actions/workflows/CI.yml?query=branch%3Amaster)
 
 This Julia package provides functions for basic GUI Desktop interactions:
 

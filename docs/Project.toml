@@ -1,2 +1,3 @@
 [deps]
+Desktop = "b29a95c0-35db-4866-a636-e016a4ee858a"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
